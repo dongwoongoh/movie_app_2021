@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    isLoading : true,
+    movie : [],
+  };
+  componentDidMount() {
+    //movie data loding...
+    axios.get("https://yts.mx/api/v2/movie_details.json");
+  }
+  render() {
+    const {isLoading} = this.state;
+    return <div>{isLoading ? 'Loding...' : 'We are ready'}</div>;
+  }
 }
 
 export default App;
